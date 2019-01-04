@@ -4,7 +4,6 @@ import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-nativ
 import ListItem from './src/components/ListItem/ListItem';
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
-import placeImage from './src/assets/beautiful-place.jpg';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -25,7 +24,9 @@ export default class App extends Component {
         places: prevState.places.concat({
           key: Math.random(), 
           name: placeName,
-          image: placeImage
+          image: {
+            uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/2000px-Flag_of_Turkey.svg.png"
+          }
         })
       };
     });
