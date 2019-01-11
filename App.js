@@ -8,18 +8,18 @@ import PlaceList from './src/components/PlaceList/PlaceList';
 import PlaceDetail from './src/components/PlaceDetail/PlaceDetail';
 import { addPlace, deletePlace, selectPlace, unSelectPlace } from './src/store/actions/index';
 
-export default class App extends Component {
+class App extends Component {
 
   placeAddedHandler = placeName => {
     this.props.onAddPlace(placeName);
   };
 
   placeDeletedHandler = () => {
-    this.props.deletePlace();
+    this.props.onDeletePlace();
   };
 
   modalClosedHandler = () => {
-    this.props.unSelectPlace();
+    this.props.onUnSelectPlace();
   };
 
   placeSelectedHandler = key => {
@@ -36,7 +36,7 @@ export default class App extends Component {
         />
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
         <PlaceList 
-          places={this.state.props.places} 
+          places={this.props.places} 
           onItemSelected={this.placeSelectedHandler}/>
       </View>
     );
@@ -60,7 +60,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToPros = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     onAddPlace: (name) => dispatch(addPlace(name)),
     onDeletePlace: () => dispatch(deletePlace()),
@@ -69,4 +69,4 @@ const mapDispatchToPros = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToPros)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
